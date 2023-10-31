@@ -25,7 +25,8 @@ public class CarButton extends JFrame {
         JButton leftButton = new JButton("Left");
         leftButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                moveCarLeft();
+                carX -= 10;
+                carLabel.setLocation(carX, carLabel.getY());
             }
         });
         buttonPanel.add(leftButton);
@@ -33,24 +34,15 @@ public class CarButton extends JFrame {
         JButton rightButton = new JButton("Right");
         rightButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                moveCarRight();
+                carX += 10;
+                carLabel.setLocation(carX, carLabel.getY());
             }
         });
         buttonPanel.add(rightButton);
 
         setVisible(true);
     }
-
-    private void moveCarLeft() {
-        carX -= 10;
-        carLabel.setLocation(carX, carLabel.getY());
-    }
-
-    private void moveCarRight() {
-        carX += 10;
-        carLabel.setLocation(carX, carLabel.getY());
-    }
-
+    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
