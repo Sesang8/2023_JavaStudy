@@ -45,7 +45,7 @@ public class CountDownTest extends JFrame {
         getContentPane().add(startButton);
 
         JButton stopButton = new JButton("카운트 중지");
-        stopButton.setBounds(200, 55, 125, 23);
+        stopButton.setBounds(200, 50, 125, 23);
         stopButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (t != null && t.isAlive()) {
