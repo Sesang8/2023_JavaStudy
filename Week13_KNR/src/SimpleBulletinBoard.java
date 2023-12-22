@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class SimpleBulletinBoard {
-    private ArrayList<Post> posts;
-    private BufferedReader reader;
+    private ArrayList<Post> posts;   // 게시물을 저장하는 리스트
+    private BufferedReader reader;   // 사용자 입력을 받기 위한 BufferedReader
 
     public SimpleBulletinBoard() {
         this.posts = new ArrayList<>();
@@ -15,6 +15,7 @@ public class SimpleBulletinBoard {
 
     // 게시물 작성
     public void create() {
+    	System.out.println("*** create 메소드 실행됨");
         try {
             System.out.print("제목: ");
             String title = reader.readLine();
@@ -27,6 +28,7 @@ public class SimpleBulletinBoard {
             LocalDate currentDate = LocalDate.now();
             String date = currentDate.toString();
 
+            // 새로운 게시물 객체 생성
             Post post = new Post(title, content, writer, date);
 
             System.out.println("보조 메뉴: 1. Ok | 2. Cancel");
@@ -44,12 +46,14 @@ public class SimpleBulletinBoard {
             e.printStackTrace();
         }
     }
-    
+
     // 게시물 조회
     public void read() {
+    	System.out.println("*** read 메소드 실행됨");
         if (posts.isEmpty()) {
             System.out.println("게시물이 없습니다.");
         } else {
+            // 게시물 목록 출력
             System.out.println("-------------------------------------------");
             System.out.println("no\twriter\t\tdate\t\ttitle");
             System.out.println("-------------------------------------------");
@@ -64,6 +68,7 @@ public class SimpleBulletinBoard {
                 int selectedPostIndex = Integer.parseInt(reader.readLine()) - 1;
 
                 if (selectedPostIndex >= 0 && selectedPostIndex < posts.size()) {
+                    // 선택한 게시물 내용 출력
                     Post selectedPost = posts.get(selectedPostIndex);
                     System.out.println("-------------------------------------------");
                     System.out.println("번호: " + (selectedPostIndex + 1));
@@ -80,10 +85,9 @@ public class SimpleBulletinBoard {
         }
     }
 
-
-
-    // 게시물 초기화
+    // 게시물 삭제
     public void clear() {
+    	System.out.println("*** clear 메소드 실행됨");
         if (posts.isEmpty()) {
             System.out.println("게시물이 없습니다.");
         } else {
@@ -122,6 +126,7 @@ public class SimpleBulletinBoard {
         SimpleBulletinBoard bulletinBoard = new SimpleBulletinBoard();
 
         while (true) {
+            // 메뉴 출력 및 선택
             System.out.println("1. Create | 2. Read | 3. Clear | 4. Exit");
             System.out.print("메뉴 선택: ");
 
@@ -156,15 +161,15 @@ public class SimpleBulletinBoard {
 }
 
 class Post {
-    private static int nextPostNumber = 1; 
-    private int postNumber; 
-    private String title;
-    private String content;
-    private String writer;
-    private String date;
+    private static int nextPostNumber = 1; // 다음 게시물 번호를 유지하기 위한 변수
+    private int postNumber; // 게시물 번호
+    private String title;   // 제목
+    private String content; // 내용
+    private String writer;  // 작성자
+    private String date;    // 작성 날짜
 
     public Post(String title, String content, String writer, String date) {
-        this.postNumber = nextPostNumber++; 
+        this.postNumber = nextPostNumber++; // 게시물 생성 시 번호 부여
         this.title = title;
         this.content = content;
         this.writer = writer;
